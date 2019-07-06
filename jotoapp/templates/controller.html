@@ -1,32 +1,31 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<style>
-    .controller-box{
-        text-align: center;
-    }
-</style>
+    <div id ="img_unit">
+      <div class="photo">
+        <img src="http://192.168.0.103:9000/?action=stream" width="120%" height="120%">
 
-<script>
+        <div class="inner">
+          <a id="left"  href="#"  class="bt"
+          onclick="sendCommand('left'); return false;">←</a>
+          <a id="forward"  href="#"  class="bt"
+          onclick="sendCommand('forward'); return false;">↑</a>
+          <a id="back"  href="#"  class="bt"
+          onclick="sendCommand('back'); return false;">↓</a>
+          <a id="right"  href="#"  class="bt"
+          onclick="sendCommand('right'); return false;">→</a>
+        </div>
+      </div>
+    </div>
+  <script>
     function sendCommand(command, params={}) {
-        console.log({action: 'sendCommand', command: command, params: params})
-        params['command'] = command
-        $.post("/api/command/", params).done(function(json){
-            console.log({action: 'sendCommand', json: json})
+        console.log({action: 'sendCommand', command: command, params: params});
+        params['command'] = command;
+        $.post("/api/command/", params).done(function (json) {
+            console.log({action: 'sendCommand', json: json});
         }, 'json')
     }
-</script>
 
-<div class="controller-box">
-    <h1>RemoteController</h1>
-</div>
+  </script>
 
-<div class="controller-box">
-    <div data-role="controlgroup" data-type="horizontal">
-        <a href="#" data-role="button" onclick="sendCommand('takeoff'); return false;">Take Off</a>
-        <a href="#" data-role="button" onclick="sendCommand('land'); return false;">Land</a>
-    </div>
-</div>
-
-<img src="http://192.168.0.103:9000/?action=stream"/>
 {% endblock %}

@@ -5,12 +5,15 @@ from flask import jsonify
 from flask import request
 from flask import render_template
 
+from jotoapp.models.car_manager import CarManager
 import config
 
 
 logger = logging.getLogger(__name__)
 app = config.app
 
+def get_car():
+    return CarManager()
 
 @app.route('/')
 def index():
@@ -26,13 +29,13 @@ def command():
     logger.info({'action': 'command', 'cmd':cmd})
     car = get_car()
     if cmd == 'left':
-      car.left():
+      car.left()
     if cmd == 'forward':
-      car.forward():
+      car.forward()
     if cmd == 'back':
-      car.back():
+      car.back()
     if cmd == 'right':
-      car.right():
+      car.right()
     return jsonify(status='success'), 200
 
 

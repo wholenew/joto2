@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+    .controller-box{
+        text-align: center;
+    }
+</style>
+
+<script>
+    function sendCommand(command, params={}) {
+        console.log({action: 'sendCommand', command: command, params: params})
+        params['command'] = command
+        $.post("/api/command/", params).done(function(json){
+            console.log({action: 'sendCommand', json: json})
+        }, 'json')
+    }
+</script>
+
+
+
+<img src="http://192.168.0.103:9000/?action=stream" width="120%" height="120%">
+
+<div style="display: flex; justify-content: center;">
+    <table style="align-self: center;">
+        
+
+        <td>
+                <button type="button" class="btn btn-outline-primary">Primary</button>
+        </td>
+        <td>
+                <button type="button" class="btn btn-outline-danger">Danger</button>
+        </td>
+
+        <td>
+                <button type="button" class="btn btn-primary">Primary</button>
+                <button type="button" class="btn btn-danger">Danger</button>
+        </td>
+        </div>
+    </table>
+</div>
+
+
+{% endblock %}
+
+
+
+<!--
+<div class="controller-box">
+    <h1>RemoteController</h1>
+</div>
+
+
+<td>
+            <div style="text-align: center;">
+                 <a href="#" data-role="button" onclick="sendCommand('takeoff'); return false;">Take Off</a>
+            </div>
+        </td>
+        <td>
+            <div style="text-align: center;">
+                 <a href="#" data-role="button" onclick="sendCommand('land'); return false;">Land</a>
+            </div>
+        </td>
+-->

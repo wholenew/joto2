@@ -18,14 +18,14 @@ class CarManager(object):
   def send_command(self, command):
       logger.info({'action': 'send_command', 'command': command})
       if command=='forward':
-        pwm = 500
+        pwm = 900
       elif command=='back':
-        pwm = 1450
+        pwm = 1300
       elif command=='right':
-        pwm = 1450
+        pwm = 1700
       elif command=='left':
-        pwm = 1450
-      self.pi.set_servo_plusewidth(self.servo, pwm)
+        pwm = 2100
+      self.pi.set_servo_pulsewidth(self.servo, pwm)
       time.sleep(3)
 
       return self.response
