@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Scalton</title>
+</head>
+<body>
+  <header>
+    <h1>Scalton</h1>
+  </header>
+
+  <div class="container">
+    <div id ="img_unit">
+      <div class="photo">
+        <img src="広瀬すず.jpg">
+        
+        <div class="inner">
+          <a id="left"  href="#"  class="bt"
+          onclick="sendCommand('left'); return false;">←</a>
+          <a id="forward"  href="#"  class="bt"
+          onclick="sendCommand('forward'); return false;">↑</a>
+          <a id="back"  href="#"  class="bt"
+          onclick="sendCommand('back'); return false;">↓</a>
+          <a id="right"  href="#"  class="bt"
+          onclick="sendCommand('right'); return false;">→</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function sendCommand(command, params={}) {
+        console.log({action: 'sendCommand', command: command, params: params});
+        params['command'] = command;
+        $.post("/api/command/", params).done(function (json) {
+            console.log({action: 'sendCommand', json: json});
+        }, 'json')
+    }
+
+  </script>
+
+</body>
+</html>
