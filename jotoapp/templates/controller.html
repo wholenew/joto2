@@ -1,40 +1,37 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div id ="img_unit">
       <div class="photo">
-        <img src="http://192.168.0.103:9000/?action=stream" width="120%" height="120%">
-
+        <img class="imgGuard" src="http://192.168.0.103:9000/?action=stream" width="100%" ">
+     </div>
         <div class="inner">
           <a id="left"  href="#"  class="bt"; return false;">←</a>
           <a id="forward"  href="#"  class="bt"; return false;">↑</a>
           <a id="back"  href="#"  class="bt"; return false;">↓</a>
           <a id="right"  href="#"  class="bt"; return false;">→</a>
         </div>
-      </div>
-    </div>
   <script>
     var timerID;
 
     $("#right").on('touchstart', function() {
       timerID = setInterval(function(){
         sendCommand('right')
-	  	}, 10);
+	  	}, 500);
     });
     $("#left").on('touchstart', function() {
       timerID = setInterval(function(){
       sendCommand('left')
-      }, 10);
+      }, 500);
     });
     $("#forward").on('touchstart', function() {
       timerID = setInterval(function(){
       sendCommand('forward')
-      }, 10);
+      }, 500);
     });
     $("#back").on('touchstart', function() {
       timerID = setInterval(function(){
       sendCommand('back')
-      }, 10);
+      }, 500);
     });
 
     $(document).on('touchend', function() {
@@ -47,6 +44,26 @@
             console.log({action: 'sendCommand', json: json});
         }, 'json')
     }
+
+    function imgGuard(name){
+      $(name).on('mousedown mouseup',function(e){
+          return false;
+      });
+  
+      $(name).css({
+        'pointer-events':'none',
+        '-webkit-touch-callout':'none',
+        '-webkit-user-select':'none',
+        '-moz-touch-callout':'none',
+        '-moz-user-select':'none',
+        'touch-callout':'none',
+        'user-select':'none'
+      });
+    }
+
+    $(function(){
+      imgGuard('.imgGuard');
+    });
 
   </script>
 

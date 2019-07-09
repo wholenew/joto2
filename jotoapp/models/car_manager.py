@@ -16,7 +16,6 @@ class CarManager(metaclass=Singleton):
         self.response = None
         self.pi = pigpio.pi()
         self.servo = servo
-        self.serial = serial.Serial('/dev/ttyACM0', 9600)
         self.bus = smbus.SMBus(1)
         self.address = 0x04
 
@@ -24,19 +23,15 @@ class CarManager(metaclass=Singleton):
       logger.info({'action': 'send_command', 'command': command})
       code = ''
       if command=='forward':
-        serial.write("forward")
         pwm = 900
         code='f'
       elif command=='back':
-        serial.write("back")
         pwm = 1300
         code='b'
       elif command=='right':
-        serial.write("right")
         pwm = 1700
         code='r'
       elif command=='left':
-        serial.write("left")
         pwm = 2100
         code='l'
       
