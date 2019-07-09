@@ -6,18 +6,40 @@
         <img src="http://192.168.0.103:9000/?action=stream" width="120%" height="120%">
 
         <div class="inner">
-          <a id="left"  href="#"  class="bt"
-          onclick="sendCommand('left'); return false;">←</a>
-          <a id="forward"  href="#"  class="bt"
-          onclick="sendCommand('forward'); return false;">↑</a>
-          <a id="back"  href="#"  class="bt"
-          onclick="sendCommand('back'); return false;">↓</a>
-          <a id="right"  href="#"  class="bt"
-          onclick="sendCommand('right'); return false;">→</a>
+          <a id="left"  href="#"  class="bt"; return false;">←</a>
+          <a id="forward"  href="#"  class="bt"; return false;">↑</a>
+          <a id="back"  href="#"  class="bt"; return false;">↓</a>
+          <a id="right"  href="#"  class="bt"; return false;">→</a>
         </div>
       </div>
     </div>
   <script>
+    var timerID;
+
+    $("#right").on('touchstart', function() {
+      timerID = setInterval(function(){
+        sendCommand('right')
+	  	}, 10);
+    });
+    $("#left").on('touchstart', function() {
+      timerID = setInterval(function(){
+      sendCommand('left')
+      }, 10);
+    });
+    $("#forward").on('touchstart', function() {
+      timerID = setInterval(function(){
+      sendCommand('forward')
+      }, 10);
+    });
+    $("#back").on('touchstart', function() {
+      timerID = setInterval(function(){
+      sendCommand('back')
+      }, 10);
+    });
+
+    $(document).on('touchend', function() {
+      clearInterval(timerID);
+    });
     function sendCommand(command, params={}) {
         console.log({action: 'sendCommand', command: command, params: params});
         params['command'] = command;
