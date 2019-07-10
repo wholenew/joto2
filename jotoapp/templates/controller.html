@@ -5,37 +5,29 @@
         <img class="imgGuard" src="http://192.168.0.103:9000/?action=stream" width="100%" ">
      </div>
         <div class="inner">
-          <a id="left"  href="#"  class="bt"; return false;">←</a>
-          <a id="forward"  href="#"  class="bt"; return false;">↑</a>
-          <a id="back"  href="#"  class="bt"; return false;">↓</a>
-          <a id="right"  href="#"  class="bt"; return false;">→</a>
+          <button id="left" type="button" class="btn btn-primary">←</button>
+          <button id="forward"type="button" class="btn btn-success">↑</button>  
+          <button id="back"type="button" class="btn btn-danger">↓</button>
+          <button id="right" class="btn btn-warning">→</button> 
         </div>
   <script>
     var timerID;
 
     $("#right").on('touchstart', function() {
-      timerID = setInterval(function(){
         sendCommand('right')
-	  	}, 500);
     });
     $("#left").on('touchstart', function() {
-      timerID = setInterval(function(){
       sendCommand('left')
-      }, 500);
     });
     $("#forward").on('touchstart', function() {
-      timerID = setInterval(function(){
       sendCommand('forward')
-      }, 500);
     });
     $("#back").on('touchstart', function() {
-      timerID = setInterval(function(){
       sendCommand('back')
-      }, 500);
     });
 
     $(document).on('touchend', function() {
-      clearInterval(timerID);
+      sendCommand('stop')
     });
     function sendCommand(command, params={}) {
         console.log({action: 'sendCommand', command: command, params: params});

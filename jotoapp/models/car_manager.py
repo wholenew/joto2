@@ -34,6 +34,9 @@ class CarManager(metaclass=Singleton):
       elif command=='left':
         pwm = 2100
         code='l'
+      elif command=='stop':
+        pwm = 2100
+        code='s'
       
       self.pi.set_servo_pulsewidth(self.servo, pwm)
       self.bus.write_byte(self.address, ord(code))
@@ -52,3 +55,6 @@ class CarManager(metaclass=Singleton):
 
   def right(self):
       return self.send_command('right')
+  
+  def stop(self):
+      return self.send_command('stop')
