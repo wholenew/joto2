@@ -23,22 +23,17 @@ class CarManager(metaclass=Singleton):
       logger.info({'action': 'send_command', 'command': command})
       code = ''
       if command=='forward':
-        pwm = 900
         code='f'
       elif command=='back':
-        pwm = 1300
         code='b'
       elif command=='right':
-        pwm = 1700
         code='r'
       elif command=='left':
-        pwm = 2100
         code='l'
       elif command=='stop':
-        pwm = 2100
         code='s'
       
-      self.pi.set_servo_pulsewidth(self.servo, pwm)
+      # self.pi.set_servo_pulsewidth(self.servo, pwm)
       self.bus.write_byte(self.address, ord(code))
       time.sleep(3)
 

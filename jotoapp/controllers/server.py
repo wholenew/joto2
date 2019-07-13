@@ -36,6 +36,8 @@ def command():
       car.back()
     if cmd == 'right':
       car.right()
+    if cmd == 'stop':
+      car.stop()
     return jsonify(status='success'), 200
 
 
