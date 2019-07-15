@@ -26,7 +26,7 @@ def controller():
 @app.route('/api/command/', methods=['POST'])
 def command():
     cmd = request.form.get('command')
-    logger.info({'action': 'command', 'cmd':cmd})
+    # logger.info({'action': 'command', 'cmd':cmd})
     car = get_car()
     if cmd == 'left':
       car.left()
@@ -38,7 +38,7 @@ def command():
       car.right()
     if cmd == 'stop':
       car.stop()
-    return jsonify(status='success'), 200
+    # return jsonify(status='success'), 200
 
 
 def run():

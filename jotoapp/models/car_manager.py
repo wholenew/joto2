@@ -35,9 +35,9 @@ class CarManager(metaclass=Singleton):
       
       # self.pi.set_servo_pulsewidth(self.servo, pwm)
       self.bus.write_byte(self.address, ord(code))
-      time.sleep(3)
+      # time.sleep(3)
 
-      return self.response
+      # return self.response
 
   def forward(self):
       return self.send_command('forward')

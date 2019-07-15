@@ -7,9 +7,9 @@ import config
 
 import jotoapp.controllers.server
 logging.basicConfig(level=logging.CRITICAL,
-                    stream=sys.stdout,
-                    #filename=config.LOG_FILE
+                    # stream=sys.stdout,
+                    filename=config.LOG_FILE
                     )
 
-
-jotoapp.controllers.server.run()
+if __name__ == '__main__':
+    jotoapp.controllers.server.run()
