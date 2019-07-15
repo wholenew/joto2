@@ -2,7 +2,7 @@ import logging
 import socket
 import sys
 import time
-import pigpio
+# import pigpio
 import serial
 import smbus
 
@@ -14,7 +14,7 @@ class CarManager(metaclass=Singleton):
   
   def __init__(self, servo=4):
         self.response = None
-        self.pi = pigpio.pi()
+        # self.pi = pigpio.pi()
         self.servo = servo
         self.bus = smbus.SMBus(1)
         self.address = 0x04
